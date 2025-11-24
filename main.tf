@@ -1,3 +1,4 @@
+
 resource "aws_instance" "jenkins" {
   ami           = local.ami_id
   instance_type = "t3.small"
@@ -12,7 +13,7 @@ resource "aws_instance" "jenkins" {
   user_data = file("jenkins.sh")
   tags = merge(
     local.common_tags,
-    { 
+    {
         Name = "${var.project}-${var.environment}-jenkins"
     }
   )
@@ -80,6 +81,6 @@ resource "aws_route53_record" "jenkins-agent" {
   name    = "jenkins-agent.${var.zone_name}"
   type    = "A"
   ttl     = 1
-  records = [aws_instance.jenkins_agent.private_ip] 
+  records = [aws_instance.jenkins_agent.private_ip]
   allow_overwrite = true
-}   
+}
