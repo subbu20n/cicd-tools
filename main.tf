@@ -16,7 +16,7 @@ resource "aws_instance" "jenkins" {
     {
         Name = "${var.project}-${var.environment}-jenkins"
     }
-  )
+  ) 
 }
 
 resource "aws_instance" "jenkins_agent" {
